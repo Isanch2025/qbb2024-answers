@@ -3,14 +3,41 @@
 - `wc -l hg38-gene-metadata-feature.tsv`
 - There are 61633 lines
 
-## Exercise 1:  
+Exercise 1:  
 `cut -f 7 hg38-gene-metadata-feature.tsv | sort | uniq -c`
 There are 19618 protein coding genes. 
 I want to look into lncRNAs because I do not know much about them but they seem to have 18804 genes, which is a lot.
 
-## Exercise 2: 
+Exercise 2
 `cut -f 1 hg38-gene-metadata-go.tsv | sort | uniq -c | sort -n`
 This gene: ENSG00000168036 has 273 go_ids. 
 `grep "ENSG00000168036" hg38-gene-metadata-go.tsv | sort -k 3 `
 This gene has so many unique and different functions with chromatin binding and regulation leading me to belive it could be linked to signaling pathways and stem cell differentiation. 
 
+Exercise 3
+`grep "IG_" gene.gtf | grep -v "pseudogene" | cut -f 1 | uniq -c` 
+52 IG genes are present on chr2
+  91 IG genes are present on chr14
+  16 IG genes are present on chr15
+   6 IG genes are present on chr16
+   1 IG gene is present on chr21
+  48 IG genes are present on chr22
+
+`grep "IG_" gene.gtf | grep "pseudogene" | cut -f 1 | uniq -c` 
+1 chr1
+  45 chr2
+   1 chr8
+   5 chr9
+   1 chr10
+  84 chr14
+   6 chr15
+   8 chr16
+   1 chr18
+  48 chr22
+
+Exercise 4
+We cannot 'just' use grep pseudogene gene.gtf because when trying to find 'lines' where the key value pair is a pseudogene there will be heavy overlap between gene types that include the overlap pseudogene. This overlap pseudogene is a different biotype altogether. A better format would be an additional grep before filtering for the pseudogene. In our case we filtered for IG_ first. 
+
+Exercise 5 
+`cut -f 1,4-5,14 gene-tabs.gtf > gene-tabs.bed`
+I ran this and it worked to both cut only the chromosome, start, stop, and gene_name, as well as renaming the file. 
