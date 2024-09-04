@@ -1,0 +1,16 @@
+## Answer 1
+
+- `wc -l hg38-gene-metadata-feature.tsv`
+- There are 61633 lines
+
+## Exercise 1:  
+`cut -f 7 hg38-gene-metadata-feature.tsv | sort | uniq -c`
+There are 19618 protein coding genes. 
+I want to look into lncRNAs because I do not know much about them but they seem to have 18804 genes, which is a lot.
+
+## Exercise 2: 
+`cut -f 1 hg38-gene-metadata-go.tsv | sort | uniq -c | sort -n`
+This gene: ENSG00000168036 has 273 go_ids. 
+`grep "ENSG00000168036" hg38-gene-metadata-go.tsv | sort -k 3 `
+This gene has so many unique and different functions with chromatin binding and regulation leading me to belive it could be linked to signaling pathways and stem cell differentiation. 
+
