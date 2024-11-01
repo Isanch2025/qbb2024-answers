@@ -1,0 +1,15 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20240807)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.12173881 Released 2024-06-17
+Analyzed List:	upload_1 (Drosophila melanogaster)
+Reference List:	Drosophila melanogaster (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Drosophila melanogaster - REFLIST (13821)	upload_1 (29)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+proteolysis (GO:0006508)	811	15	1.70	+	8.81	1.06E-11	7.81E-08
+protein metabolic process (GO:0019538)	1955	15	4.10	+	3.66	1.88E-06	6.90E-03
+metabolic process (GO:0008152)	4423	21	9.28	+	2.26	9.35E-06	2.29E-02

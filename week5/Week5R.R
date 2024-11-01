@@ -42,8 +42,14 @@ PCA_data = plotPCA(vstNarrow, intgroup=c('rep', 'tissue'), returnData=TRUE)
 
 ggplot(PCA_data, mapping = aes(PC1, PC2, color=tissue, shape=rep)) + 
   geom_point(size=5)
+#that PCA data is wrong because LFC-Fe rep3 is switched with Fe rep1
+#switch LFC-Fe rep 3 and Fe rep 1 in order to fix the data 
 
 vst_Matrix = as.matrix(assay(vstNarrow))
+correct_names = colnames(vst_Matrix)
+vst_Matrix = vst_Matrix[, c(1,2,3,4,5,6,7,8,9,10,11,13,12,14,15,16,17,18,19,20,21)]
+colnames(vst_Matrix) = correct_names
+
 combined = vst_Matrix[,seq(1,21,3)]
 combined = vst_Matrix[,seq(2,21,3)]
 combined = combined + vst_Matrix[,seq(3,21,3)]
@@ -57,6 +63,12 @@ set.seed(42)
 k = kmeans(Narrowed_Matrix, centers=12)$cluster
 ordering = order(k)
 k = k[ordering]
-
+Narrowed_Matrix = Narrowed_Matrix[ordering, ]
 Narrowed_heatmap= heatmap(Narrowed_Matrix, Rowv=NA, Colv=NA, 
         RowSideColors=RColorBrewer::brewer.pal(12, "Paired")[k])
+
+genes= rownames(Narrowed_Matrix[k==1,]) 
+write.table(genes,'cluster1.txt',sep="\n", quote=FALSE,
+            row.names=FALSE,col.names=FALSE)
+
+
