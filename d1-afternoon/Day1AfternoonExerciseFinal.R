@@ -9,6 +9,7 @@ SMGEBTCHT <- df %>%
 #Number4
 ggplot(data=SMGEBTCHT, mapping = aes( x=SMTSD )) + 
   geom_bar() + 
+  theme(axis.text.x = element_text(angle = -90))
   xlab("Tissue Type") + 
   ylab("Sample Count") +
   ggtitle("Relationship between Sample Count and Tissue Type")
